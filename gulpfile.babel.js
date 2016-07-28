@@ -119,6 +119,8 @@ gulp.task('browserSync', () => {
   });
 });
 
+
+
 gulp.task('watch',() => {
   gulp.watch(config.style_src + '**/*.less', ['less']);
   gulp.watch(config.js_src + '**/*.js', ['js']);
