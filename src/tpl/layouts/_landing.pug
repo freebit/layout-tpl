@@ -1,0 +1,14 @@
+doctype html
+
+block vars
+
+html(lang=`${page.language}`)
+    head
+        include ../partials/landing/_landing_head
+
+    body
+        block header
+        block main
+        block footer
+        block bottom_js
+

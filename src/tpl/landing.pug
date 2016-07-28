@@ -1,0 +1,32 @@
+extends layouts/_landing
+
+block vars
+    -
+        page = {
+            language: 'ru',
+            charset: 'utf-8',
+            name: 'mk landing',
+            title: 'mk landing',
+            appTitle: 'mk app',
+            description: 'mk app description',
+            main_css: 'landing.min.css'
+        }
+
+        main_menu = [
+            {title:'Home', href:'#home'},
+            {title:'About', href:'#about'}
+        ]
+
+
+block header
+    include partials/landing/_landing_header
+block main
+    .container
+        h1 content
+
+block footer
+    footer#footer
+        h3 footer
+
+block bottom_js
+    script(src="js/main.min.js")
