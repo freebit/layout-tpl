@@ -38,7 +38,15 @@ const config = {
 
   get js_dest(){
     return this.public_path + 'js/'
-  }
+  },
+
+  get img_src(){
+      return this.src_path + 'img/'
+  },
+
+    get img_dest(){
+        return this.public_path + 'img/'
+    }
 }
 
 gulp.task('del', () => {
@@ -94,6 +102,14 @@ gulp.task('js', function() {
       }));
 });
 
+gulp.task('img_min', () => {
+    gulp.src(config.img_src + '*')
+        .pipe($.imagemin({
+            progressive: true
+        }))
+        .pipe(gulp.dest(config.img_dest))
+});
+
 gulp.task('browserSync', () => {
   browserSync({
     server: {
@@ -110,6 +126,7 @@ gulp.task('watch',() => {
   gulp.watch(config.style_src + '**/*.less', ['less']);
   gulp.watch(config.js_src + '**/*.js', ['js']);
   gulp.watch(config.tpl_src + '**/*.pug', ['pug']);
+  gulp.watch('**/*',{cwd: config.img_src}, ['img_min']);
 });
 
-gulp.task('default', ['del','less','js','pug','browserSync','watch']);
+gulp.task('default', ['del','less','js','img_min','pug','browserSync','watch']);
