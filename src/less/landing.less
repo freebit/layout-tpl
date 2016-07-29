@@ -1,24 +1,51 @@
+@import "../bower_components/bootstrap-less/less/variables";
+@import "../bower_components/bootstrap-less/less/mixins";
+@import "../bower_components/bootstrap-less/less/normalize";
+@import "../bower_components/bootstrap-less/less/type";
+@import "../bower_components/bootstrap-less/less/grid";
+@import "../bower_components/bootstrap-less/less/buttons";
+@import "../bower_components/bootstrap-less/less/navs";
+@import "../bower_components/bootstrap-less/less/variables";
+@import "../bower_components/bootstrap-less/less/utilities";
+@import "../bower_components/bootstrap-less/less/responsive-utilities";
+
+
 @import url(https://fonts.googleapis.com/css?family=Comfortaa&subset=latin,cyrillic);
 
+@green_color: #00cc99;
+@red_color: #d95100;
 
-html,body{
-  margin: 0;
-  padding:0;
-  width: 100%;
-  height: 100%;
-  font-family: 'Comfortaa';
-}
 body{
   background-color: #314e6e;
-  color: #fff;
 }
 
-a{
-  color: inherit;
-}
 
 #header{
   position: relative;
   height: 130px;
   background-color: lighten(#314e6e,10%);
+  color:@green_color;
+}
+
+.form-block{
+  position: relative;
+  margin-top: 30px;
+
+
+  .remaining{
+    display: inline-block;
+    margin-bottom: 5px;
+    color: @green_color;
+
+    ins{
+      display: inline-block;
+      text-decoration: none;
+
+      &.text-warning{
+        color:@red_color;
+      }
+    }
+
+
+  }
 }

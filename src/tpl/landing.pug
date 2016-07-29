@@ -20,15 +20,24 @@ block vars
 
 block header
     include partials/landing/_landing_header
+
 block main
     .container
-        h1.
-            {{user.name}}
-        input(type='text',ng-model="user.name")
+        .form-block(ng-controller="TextAreaWithLimitCtrl")
+            .row
+                span.remaining Remaining:
+                    ins(ng-class="{'text-warning':shouldWarn()}") {{remaining()}}
+            .row
+                textarea(ng-model="message").
+                    {{message}}
+            .row
+                button.btn.btn-default(ng-click="send()" ng-disabled="!hasValidLength()") Send
+                button.btn(ng-click="clear()") Clear
+
 
 block footer
-    footer#footer
-        h3 footer
+    .container
+        footer#footer
 
 block bottom_js
     script(src="js/main.min.js")

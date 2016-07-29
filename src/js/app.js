@@ -12,9 +12,26 @@ ngModule.config(['$locationProvider','$httpProvider', ($locationProvider, $httpP
 
 ngModule.controller('LandingCtrl', ['$scope', ($scope) => {
 
-    $scope.user = {
-        name: "Freebus"
+}]);
+
+
+ngModule.controller('TextAreaWithLimitCtrl', ['$scope',($scope) => {
+
+    const MAX_LEN = 10;
+    const WARN_THRESHOLD = 3;
+
+    $scope.message = "";
+
+    $scope.remaining = () => {
+        return MAX_LEN - $scope.message.length;
     };
 
+    $scope.hasValidLength = () => {
+        return $scope.message.length < MAX_LEN;
+    }
+
+    $scope.shouldWarn = function () {
+        return $scope.remaining() < WARN_THRESHOLD;
+    };
 
 }]);
