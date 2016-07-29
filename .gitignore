@@ -1,7 +1,7 @@
 node_modules
 public
 
-src/js/bower_components
+src/bower_components
 
 .idea
 

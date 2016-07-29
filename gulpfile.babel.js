@@ -49,7 +49,7 @@ const config = {
   },
 
   get bower_src(){
-      return this.src_path + 'js/bower_components/'
+      return this.src_path + 'bower_components/'
   }
 }
 
@@ -90,7 +90,8 @@ gulp.task('less', () => {
 gulp.task('js', function() {
   return gulp.src([
 
-            config.bower_src + 'angular/angular.js',
+            config.bower_src + 'angular/angular.min.js',
+            config.bower_src + 'angular-ui-mask/dist/mask.min.js',
             config.js_src + 'app.js'
 
         ])

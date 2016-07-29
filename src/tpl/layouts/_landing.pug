@@ -2,11 +2,11 @@ doctype html
 
 block vars
 
-html(lang=`${page.language}`)
+html(lang=`${page.language}`, ng-app="landingApp", ng-init="name='RootFreebus'")
     head
         include ../partials/landing/_landing_head
 
-    body
+    body(ng-controller="LandingCtrl")
         block header
         block main
         block footer
