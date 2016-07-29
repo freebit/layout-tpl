@@ -44,9 +44,13 @@ const config = {
       return this.src_path + 'img/'
   },
 
-    get img_dest(){
-        return this.public_path + 'img/'
-    }
+  get img_dest(){
+     return this.public_path + 'img/'
+  },
+
+  get bower_src(){
+      return this.src_path + 'js/bower_components/'
+  }
 }
 
 gulp.task('del', () => {
@@ -84,7 +88,12 @@ gulp.task('less', () => {
 });
 
 gulp.task('js', function() {
-  return gulp.src(config.js_src + '**/*.js')
+  return gulp.src([
+
+            config.bower_src + 'angular/angular.js',
+            config.js_src + 'app.js'
+
+        ])
       .pipe($.sourcemaps.init())
       .pipe($.babel({
         presets: ['es2015']
