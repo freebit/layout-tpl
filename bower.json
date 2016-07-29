@@ -1,0 +1,23 @@
+{
+  "name": "layout-tpl",
+  "description": "start app",
+  "main": "index.js",
+  "authors": [
+    "Freebit <freebit77@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/freebit/layout-tpl",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-mask": "^1.8.7",
+    "angular": "^1.5.8",
+    "bootstrap-less": "^3.3.4"
+  }
+}
