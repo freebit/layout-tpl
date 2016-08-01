@@ -27,11 +27,21 @@ ngModule.controller('TextAreaWithLimitCtrl', ['$scope',($scope) => {
     };
 
     $scope.hasValidLength = () => {
-        return $scope.message.length < MAX_LEN;
+        return $scope.message.length <= MAX_LEN;
     }
 
     $scope.shouldWarn = function () {
         return $scope.remaining() < WARN_THRESHOLD;
     };
+
+    $scope.checkMessageLength = (evt) => {
+        if($scope.message.length == MAX_LEN){
+            evt.preventDefault();
+        }
+    }
+
+    $scope.clearMessage = () => {
+        return $scope.message = "";
+    }
 
 }]);

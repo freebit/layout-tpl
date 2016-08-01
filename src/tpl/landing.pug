@@ -28,11 +28,11 @@ block main
                 span.remaining Remaining:
                     ins(ng-class="{'text-warning':shouldWarn()}") {{remaining()}}
             .row
-                textarea(ng-model="message").
+                textarea.form-control(ng-model="message",ng-keypress="checkMessageLength($event)").
                     {{message}}
             .row
-                button.btn.btn-default(ng-click="send()" ng-disabled="!hasValidLength()") Send
-                button.btn(ng-click="clear()") Clear
+                button.btn.btn-success(ng-click="send()" ng-disabled="!hasValidLength()") Send
+                button.btn.btn-info(ng-click="clearMessage()") Clear
 
 
 block footer
