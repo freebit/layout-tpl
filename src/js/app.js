@@ -1,6 +1,8 @@
 
+import angular from 'angular';
+import ui_mask from 'angular-ui-mask';
 
-const ngModule = angular.module('landingApp', ['ui.mask']);
+const ngModule = angular.module('landingApp', [ui_mask]);
 
 ngModule.config(['$locationProvider','$httpProvider', ($locationProvider, $httpProvider) => {
 

@@ -2,6 +2,7 @@
 
 import gulp from 'gulp'
 import del from 'del'
+import webpack from 'webpack';
 import loadPlugins from 'gulp-load-plugins'
 import browserSync from 'browser-sync'
 
@@ -10,6 +11,8 @@ const $ = loadPlugins({
   camelize: true,
   lazy: true
 });
+
+import webpackConfig from './webpack.config';
 
 const config = {
   src_path : './src/',
@@ -87,26 +90,39 @@ gulp.task('less', () => {
       }));
 });
 
-gulp.task('js', function() {
-  return gulp.src([
+// gulp.task('js', function() {
+//   return gulp.src([
+//
+//             config.bower_src + 'angular/angular.min.js',
+//             config.bower_src + 'angular-ui-mask/dist/mask.min.js',
+//             config.js_src + 'app.js'
+//
+//         ])
+//       .pipe($.sourcemaps.init())
+//       .pipe($.babel({
+//         presets: ['es2015']
+//       }))
+//       .pipe($.concat('main.min.js'))
+//       .on('error',(err)=>{console.log(err)})
+//       .pipe($.util.env.type == 'prod' ? $.uglify() : $.util.noop())
+//       .pipe($.sourcemaps.write())
+//       .pipe(gulp.dest(config.js_dest))
+//       .pipe(browserSync.reload({
+//         stream: true
+//       }));
+// });
 
-            config.bower_src + 'angular/angular.min.js',
-            config.bower_src + 'angular-ui-mask/dist/mask.min.js',
-            config.js_src + 'app.js'
+gulp.task('webpack-js', () => {
+    webpack(webpackConfig, (err, stats) => {
+        if (err) {
+            throw new $.util.PluginError('webpack', err);
+        }
 
-        ])
-      .pipe($.sourcemaps.init())
-      .pipe($.babel({
-        presets: ['es2015']
-      }))
-      .pipe($.concat('main.min.js'))
-      .on('error',(err)=>{console.log(err)})
-      .pipe($.util.env.type == 'prod' ? $.uglify() : $.util.noop())
-      .pipe($.sourcemaps.write())
-      .pipe(gulp.dest(config.js_dest))
-      .pipe(browserSync.reload({
-        stream: true
-      }));
+        $.util.log("webpack", stats.toString({
+            // output options
+        }));
+
+    });
 });
 
 gulp.task('img_min', () => {
@@ -133,9 +149,9 @@ gulp.task('browserSync', () => {
 
 gulp.task('watch',() => {
   gulp.watch(config.style_src + '**/*.less', ['less']);
-  gulp.watch(config.js_src + '**/*.js', ['js']);
+  gulp.watch(config.js_src + '**/*.js', ['webpack-js']);
   gulp.watch(config.tpl_src + '**/*.pug', ['pug']);
   gulp.watch('**/*',{cwd: config.img_src}, ['img_min']);
 });
 
-gulp.task('default', ['del','less','js','img_min','pug','browserSync','watch']);
+gulp.task('default', ['del','less','webpack-js','img_min','pug','browserSync','watch']);
