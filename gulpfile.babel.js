@@ -2,7 +2,7 @@
 
 import gulp from 'gulp'
 import del from 'del'
-import webpack from 'webpack';
+import webpack from 'webpack-stream';
 import loadPlugins from 'gulp-load-plugins'
 import browserSync from 'browser-sync'
 
@@ -113,16 +113,16 @@ gulp.task('less', () => {
 // });
 
 gulp.task('webpack-js', () => {
-    webpack(webpackConfig, (err, stats) => {
-        if (err) {
-            throw new $.util.PluginError('webpack', err);
-        }
 
-        $.util.log("webpack", stats.toString({
-            // output options
-        }));
+    return gulp.src([
+        config.js_src + 'app.js'
+    ])
+    .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest(config.js_dest))
+    .pipe(browserSync.reload({
+        stream: true
+    }));
 
-    });
 });
 
 gulp.task('img_min', () => {

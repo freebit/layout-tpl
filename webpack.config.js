@@ -27,8 +27,6 @@ module.exports = {
         extensions: ['','.js','.less']
     },
 
-    //watch: NODE_ENV == DEV_MODE,
-
     watchOptions:{
         aggregateTimeout:100
     },

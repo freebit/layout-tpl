@@ -40,6 +40,7 @@ ngModule.controller('TextAreaWithLimitCtrl', ['$scope',($scope) => {
         if($scope.message.length == MAX_LEN){
             evt.preventDefault();
         }
+        console.log(_);
     }
 
     $scope.clearMessage = () => {
