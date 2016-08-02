@@ -118,6 +118,7 @@ gulp.task('webpack-js', () => {
         config.js_src + 'app.js'
     ])
     .pipe(webpack(webpackConfig))
+    .pipe($.util.env.type == 'prod' ? $.uglify() : $.util.noop())
     .pipe(gulp.dest(config.js_dest))
     .pipe(browserSync.reload({
         stream: true
