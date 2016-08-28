@@ -10,38 +10,44 @@ ngModule.config(['$locationProvider','$httpProvider', ($locationProvider, $httpP
 
 }]);
 
-
-
-ngModule.controller('LandingCtrl', ['$scope', ($scope) => {
-
-}]);
-
-
-ngModule.controller('TextAreaWithLimitCtrl', ['$scope',($scope) => {
-
-    const MAX_LEN = 10;
-    const WARN_THRESHOLD = 3;
+ngModule.controller('MainCtrl', ['$scope',($scope) => {
 
     $scope.message = "";
 
-    $scope.remaining = () => {
-        return MAX_LEN - $scope.message.length;
-    };
+    const draw = (count) => {
+      let str = ''
 
-    $scope.hasValidLength = () => {
-        return $scope.message.length <= MAX_LEN;
+      for (var i = 0; i < count; i++) {
+        str += ( i % 2 == 0 ? '  ' : '') + new Array(5).join('#  ') + '\n';
+      }
+
+      return str;
     }
 
-    $scope.shouldWarn = function () {
-        return $scope.remaining() < WARN_THRESHOLD;
-    };
-
-    $scope.checkMessageLength = (evt) => {
-        if($scope.message.length == MAX_LEN){
-            evt.preventDefault();
-        }
-        console.log(_);
+    const min = (a,b) => {
+      return a > b ? b : a;
     }
+
+    const isEven = (num) => {
+
+    }
+
+    const Increment = () => {
+      let value_ = 0
+      return () => ++value_
+    }
+
+    const increment = new Increment();
+
+    //debugger
+
+    $scope.message = increment();
+    $scope.message += "\n" + increment();
+    $scope.message += "\n" + increment();
+    $scope.message += "\n" + increment();
+    $scope.message += "\n" + increment();
+    $scope.message += "\n" + increment();
+    $scope.message += "\n" + increment();
 
     $scope.clearMessage = () => {
         return $scope.message = "";

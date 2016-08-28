@@ -23,15 +23,13 @@ block header
 
 block main
     .container
-        .form-block(ng-controller="TextAreaWithLimitCtrl")
+        .form-block(ng-controller="MainCtrl")
+
             .row
-                span.remaining Remaining:
-                    ins(ng-class="{'text-warning':shouldWarn()}") {{remaining()}}
-            .row
-                textarea.form-control(ng-model="message",ng-keypress="checkMessageLength($event)").
+                textarea.form-control(ng-model="message").
                     {{message}}
             .row
-                button.btn.btn-success(ng-click="send()" ng-disabled="!hasValidLength()") Send
+                //button.btn.btn-success() Send
                 button.btn.btn-info(ng-click="clearMessage()") Clear
 
 
